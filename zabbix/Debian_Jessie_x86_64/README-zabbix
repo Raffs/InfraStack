@@ -31,4 +31,12 @@ $ unzip master.zip
 $ cd InfraStack-master/zabbix/Debian_Jessie_x86_64/
 $ vagrant up
 
+4) Add domain pool.linuxsysadmin.com.br on /etc/hosts:
+
+$ sudo echo "127.0.0.1 pool.linuxsysadmin.com.br" >> /etc/hosts
+
+5) Open web browser:
+
+http://pool.linuxsysadmin.com.br:8080/
+
 #EOF =)
