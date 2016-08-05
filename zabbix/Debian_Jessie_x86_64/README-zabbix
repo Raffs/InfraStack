@@ -15,8 +15,11 @@ $ vagrant plugin install vagrant-timezone
 2) Download for Vagranfile Zabbix: multi-server architecture:
 
 $ wget https://github.com/Raffs/InfraStack/archive/master.zip
+$ unzip master.zip
 
 3) Provision environment:
 
 $ cd InfraStack-master/zabbix/Debian_Jessie_x86_64/
 $ vagrant up
+
+#EOF =)
