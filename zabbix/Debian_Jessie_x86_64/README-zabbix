@@ -6,12 +6,18 @@
 
 Vagrantfile for zabbix 3.0: multi-server architecture
 
-
-1) Vagrant plugin require:
-
-vagrant-timezone
+1) Vagrant plugin require: vagrant-timezone
 
 Mode install:
 
 $ vagrant plugin install vagrant-timezone
 
+
+2) Download for Vagranfile Zabbix: multi-server architecture:
+
+$ wget https://github.com/Raffs/InfraStack/archive/master.zip
+
+3) Provision environment:
+
+$ cd InfraStack-master/zabbix/Debian_Jessie_x86_64/
+$ vagrant up
