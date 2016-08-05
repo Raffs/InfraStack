@@ -1,0 +1,15 @@
+127.0.0.1	MAQUINA		MAQUINA
+127.0.0.1	localhost
+127.0.1.1	jessie.raw	jessie
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+# Ambiente: Zabbix 3
+192.168.50.2	srvpgsql01.linuxsysadmin.com.br		srvpgsql01	# DB Master:	postgresql
+192.168.50.3	srvpgsql02.linuxsysadmin.com.br		srvpgsql02	# DB Slave:	postgresql
+192.168.50.4	srvpgsql03.linuxsysadmin.com.br		srvpgsql03	# DB Slave:	postgresql
+192.168.50.5	srvzbxpool01.linuxsysadmin.com.br	srvzbxpool01	# Balanceador:	nginx
+192.168.50.6	srvfrt01.linuxsysadmin.com.br		srvfrt01	# Frontend:	apache2
+192.168.50.7	srvfrt02.linuxsysadmin.com.br		srvfrt02	# Frontend:	apache2
+192.168.50.8	srvzbx01.linuxsysadmin.com.br		srvzbx01	# Server:	zabbix_server
