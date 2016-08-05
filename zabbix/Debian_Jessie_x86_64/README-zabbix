@@ -6,6 +6,15 @@
 
 Vagrantfile for zabbix 3.0: multi-server architecture
 
+Softwares used on environment:
+Vagrant (https://www.vagrantup.com)
+VirtualBox (https://www.virtualbox.org)
+Nginx (http://nginx.org)
+Apache (http://www.apache.org)
+Zabbix (http://www.zabbix.com)
+PostgreSQL (https://www.postgresql.org)
+Repmgr (http://www.repmgr.org)
+
 1) Vagrant plugin require: vagrant-timezone
 
 Mode install:
