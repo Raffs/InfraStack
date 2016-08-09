@@ -31,7 +31,7 @@ $ unzip master.zip
 $ cd InfraStack-master/zabbix-multi-server/debian-jessie-64/
 $ vagrant up
 
-4) Add domain pool.linuxsysadmin.com.br on /etc/hosts:
+4) Add name pool.linuxsysadmin.com.br on /etc/hosts:
 
 $ sudo echo "127.0.0.1 pool.linuxsysadmin.com.br" >> /etc/hosts
 
