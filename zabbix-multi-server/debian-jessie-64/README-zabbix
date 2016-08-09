@@ -28,7 +28,7 @@ $ unzip master.zip
 
 3) Provision environment:
 
-$ cd InfraStack-master/zabbix/Debian_Jessie_x86_64/
+$ cd InfraStack-master/zabbix-multi-server/debian-jessie-64/
 $ vagrant up
 
 4) Add domain pool.linuxsysadmin.com.br on /etc/hosts:
