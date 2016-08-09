@@ -37,6 +37,6 @@ $ sudo echo "127.0.0.1 pool.linuxsysadmin.com.br" >> /etc/hosts
 
 5) Open web browser:
 
-http://pool.linuxsysadmin.com.br:8080/
+http://pool.linuxsysadmin.com.br:8080/zabbix/
 
 #EOF =)
