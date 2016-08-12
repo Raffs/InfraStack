@@ -1,5 +1,24 @@
 #!/bin/bash
 
+if [ -e "/vagrant" ]; then
+
+        VAGRANT_HOME="/vagrant"
+
+elif [ -e "/home/vagrant/sync" ]; then
+
+        VAGRANT_HOME="/home/vagrant/sync"
+
+else
+
+        echo "Not sync folder"
+        exit 1
+
+fi
+
+# Add DNS google.com: 8.8.8.8 and 8.8.4.4
+echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+echo "nameserver 8.8.4.4" >> /etc/resolv.conf
+
 # Criando o repositório do PostgreSQL
 wget https://www.postgresql.org/media/keys/ACCC4CF8.asc -O /tmp/ACCC4CF8.asc
 apt-key add /tmp/ACCC4CF8.asc
@@ -17,10 +36,10 @@ su - postgres -c "createuser -s repmgr"
 su - postgres -c "createdb repmgr -O repmgr"
 su - postgres -c "psql -f /usr/share/postgresql/9.5/contrib/repmgr_funcs.sql repmgr"
 systemctl stop postgresql
-mv -fv /vagrant/postgresql.conf /etc/postgresql/9.5/main/
-mv -fv /vagrant/pg_hba.conf /etc/postgresql/9.5/main/
-mv -fv /vagrant/repmgr.conf /etc/
-mv -fv /vagrant/hosts /etc/hosts
+mv -fv ${VAGRANT_HOME}/conf/postgresql.conf /etc/postgresql/9.5/main/
+mv -fv ${VAGRANT_HOME}/conf/pg_hba.conf /etc/postgresql/9.5/main/
+mv -fv ${VAGRANT_HOME}/conf/repmgr.conf /etc/
+mv -fv ${VAGRANT_HOME}/conf/hosts /etc/hosts
 sed -i "s/MAQUINA/$(hostname)/g" /etc/hosts
 sed -i "s/NUMERO/1/g" /etc/repmgr.conf
 sed -i "s/NOME/$(hostname)/g" /etc/repmgr.conf

@@ -1,10 +1,10 @@
 # Zabbix: multi-server architecture
 # Site: www.linuxsysadmin.com.br
 # Author: Elvis Suffi Pompeu
-# Email: elvis.suffipompeu@hotmail.com
+# Email: elvis.suffipompeu@hotmail.com.br
 # https://github.com/elvispompeu
 
-Vagrantfile for zabbix 3.0: multi-server architecture
+Vagrantfile for zabbix 3.0: multi-server architecture on CentOS/6 x86_64
 
 Softwares used on environment:
 Vagrant (https://www.vagrantup.com)
@@ -28,15 +28,15 @@ $ unzip master.zip
 
 3) Provision environment:
 
-$ cd InfraStack-master/zabbix-multi-server/debian-jessie-64/
+$ cd InfraStack-master/zabbix/zabbix-multi-server/centos/
 $ vagrant up
 
-4) Add name pool.linuxsysadmin.com.br on /etc/hosts:
+4) Add domain pool.linuxsysadmin.com.br on /etc/hosts:
 
 $ sudo echo "127.0.0.1 pool.linuxsysadmin.com.br" >> /etc/hosts
 
 5) Open web browser:
 
-http://pool.linuxsysadmin.com.br:8080/zabbix/
+http://pool.linuxsysadmin.com.br:8080/
 
 #EOF =)

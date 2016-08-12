@@ -1,4 +1,4 @@
-# Zabbix: multi-server architecture
+# Zabbix: Multi Server Architecture
 # Site: www.linuxsysadmin.com.br
 # Author: Elvis Suffi Pompeu
 # Email: elvis.suffipompeu@hotmail.com.br
@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 	
 	# Banco de Dados: PostgreSQL
         config.vm.define "srvpgsql01" do |srvpgsql01|
-                srvpgsql01.vm.box = "debian/jessie64" # Distribuição e Versão do SO
+                srvpgsql01.vm.box = "centos/7" # Distribuição e Versão do SO
                 srvpgsql01.vm.hostname = "srvpgsql01" # Hostname da VM
                 srvpgsql01.vm.network "private_network", ip: "192.168.50.2"
 
@@ -22,14 +22,14 @@ Vagrant.configure("2") do |config|
                         vb.name = "srvpgsql01" # Nome da máquina Virtual no VirtualBox
                 end
 
-                 # PostgreSQL: Master.
+                 # PostgreSQL: Master
                 srvpgsql01.vm.provision "shell", :path => "scripts/pgsql-master.sh"
-
-        end
+        
+	end
 	
 	# Banco de Dados: PostgreSQL Replica 1
-	config.vm.define "srvpgsql02" do |srvpgsql02|
-                srvpgsql02.vm.box = "debian/jessie64" # Distribuição e Versão do SO
+        config.vm.define "srvpgsql02" do |srvpgsql02|
+                srvpgsql02.vm.box = "centos/7" # Distribuição e Versão do SO
                 srvpgsql02.vm.hostname = "srvpgsql02" # Hostname da VM
                 srvpgsql02.vm.network "private_network", ip: "192.168.50.3"
 
@@ -39,32 +39,31 @@ Vagrant.configure("2") do |config|
                         vb.name = "srvpgsql02" # Nome da máquina Virtual no VirtualBox
                 end
 
-
-                # PostgreSQL: Replica
+                 # PostgreSQL: Replica
                 srvpgsql02.vm.provision "shell", :path => "scripts/pgsql-slave.sh"
 
         end
 	
 	# Banco de Dados: PostgreSQL Replica 2
         config.vm.define "srvpgsql03" do |srvpgsql03|
-                srvpgsql03.vm.box = "debian/jessie64" # Distribuição e Versão do SO
+                srvpgsql03.vm.box = "centos/7" # Distribuição e Versão do SO
                 srvpgsql03.vm.hostname = "srvpgsql03" # Hostname da VM
                 srvpgsql03.vm.network "private_network", ip: "192.168.50.4"
-	
+
                 srvpgsql03.vm.provider "virtualbox" do |vb|
                         vb.memory = "512" # 512MB de Memória RAM
                         vb.cpus = "1" # Quantidade Core de CPU
                         vb.name = "srvpgsql03" # Nome da máquina Virtual no VirtualBox
                 end
-	
-                # PostgreSQL: Replica
-                srvpgsql03.vm.provision "shell", :path => "scripts/pgsql-slave.sh"
-	
+
+                 # Provisionar o PostgreSQL.
+		 srvpgsql03.vm.provision "shell", :path => "scripts/pgsql-slave.sh"
+
         end
 
 	# Nginx: Balancer
         config.vm.define "srvzbxpool01" do |srvzbxpool01|
-                srvzbxpool01.vm.box = "debian/jessie64" # Distribuição e Versão do SO
+                srvzbxpool01.vm.box = "centos/7" # Distribuição e Versão do SO
                 srvzbxpool01.vm.hostname = "srvzbxpool01" # Hostname da VM
                 srvzbxpool01.vm.network "private_network", ip: "192.168.50.5"
                 srvzbxpool01.vm.network "forwarded_port", guest: 80, host: 8080 # Encaminhamento de Porta de 80 para 8080
@@ -82,11 +81,11 @@ Vagrant.configure("2") do |config|
 
 	# node01
         config.vm.define "srvfrt01" do |srvfrt01|
-                srvfrt01.vm.box = "debian/jessie64" # Distribuição e Versão do SO
+                srvfrt01.vm.box = "centos/7" # Distribuição e Versão do SO
                 srvfrt01.vm.hostname = "srvfrt01" # Hostname da VM
                 srvfrt01.vm.network "private_network", ip: "192.168.50.6"
                 srvfrt01.vm.network "forwarded_port", guest: 80, host: 8081 # Encaminhamento de Porta de 80 para 8081
-
+	
                 srvfrt01.vm.provider "virtualbox" do |vb|
                         vb.memory = "512" # 512MB de Memória RAM
                         vb.cpus = "1" # Quantidade Core de CPU
@@ -95,30 +94,28 @@ Vagrant.configure("2") do |config|
 	
 		 # Provisionar o frontend zabbix.
         	srvfrt01.vm.provision "shell", :path => "scripts/node-frontend.sh"
-
         end
 	
 	# node02
         config.vm.define "srvfrt02" do |srvfrt02|
-                srvfrt02.vm.box = "debian/jessie64" # Distribuição e Versão do SO
+                srvfrt02.vm.box = "centos/7" # Distribuição e Versão do SO
                 srvfrt02.vm.hostname = "srvfrt02" # Hostname da VM
                 srvfrt02.vm.network "private_network", ip: "192.168.50.7"
                 srvfrt02.vm.network "forwarded_port", guest: 80, host: 8082 # Encaminhamento de Porta de 80 para 8082
-
+	
                 srvfrt02.vm.provider "virtualbox" do |vb|
                         vb.memory = "512" # 512MB de Memória RAM
                         vb.cpus = "1" # Quantidade Core de CPU
                         vb.name = "srvfrt02" # Nome da máquina Virtual no VirtualBox
                 end
-		
+			
 		 # Provisionar o frontend zabbix.
-        	srvfrt02.vm.provision "shell", :path => "scripts/node-frontend.sh"
-
+	        srvfrt02.vm.provision "shell", :path => "scripts/node-frontend.sh"
         end
 	
 	# zabbix-server
         config.vm.define "srvzbx01" do |srvzbx01|
-                srvzbx01.vm.box = "debian/jessie64" # Distribuição e Versão do SO
+                srvzbx01.vm.box = "centos/7" # Distribuição e Versão do SO
                 srvzbx01.vm.hostname = "srvzbx01" # Hostname da VM
                 srvzbx01.vm.network "private_network", ip: "192.168.50.8"
 
