@@ -1,0 +1,14 @@
+# Puppet: Puppet Master Server
+# Site: raffs.com.br
+# Author: Rafael Oliveira Silva
+# Email: rafaeloliveira.cs@gmail.com
+# https://github.com/raffs/
+
+Softwares used on environment:
+Vagrant (https://www.vagrantup.com)
+VirtualBox (https://www.virtualbox.org)
+Puppet (https://puppet.com)
+
+Vagrant to provide Puppet Master machine 
+
+#EOF =)

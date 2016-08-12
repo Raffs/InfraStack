@@ -1,0 +1,24 @@
+# Puppet: Puppet Master Server
+# Site: raffs.com.br
+# Author: Rafael Oliveira Silva
+# Email: rafaeloliveira.cs@gmail.com
+# https://github.com/raffs/
+
+# Let's to go 
+Vagrant.configure("2") do |config|
+
+	# Vagrant base image 
+	config.vm.box = "debian/jessie64"
+	config.vm.hostname = "puppet"
+	config.vm.network "private_network", ip: "192.168.30.1"
+
+	# Define the virtualbox machines resources
+	config.vm.provider "virtualbox" do |vb|
+		vb.memory = "1024"	# Define the 1GB memory
+		vb.cpus = "1"
+		vb.name = "Puppet Master"
+	end
+
+	# Provision puppet master using Shell Script files 
+	config.vm.provision "shell", :path => "shell/puppet-install.sh"
+end
