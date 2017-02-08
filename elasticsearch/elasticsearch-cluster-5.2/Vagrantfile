@@ -1,0 +1,21 @@
+# Name: Elasticsearch 2.0 Cluster
+
+Vagrant.configure("2") do |config|
+
+  # Define vagrant box (VM Image)
+  config.vm.box = "ubuntu/trusty64"
+
+  # Network configuration 
+  config.vm.hostname = "elasticsearch-node"
+  config.vm.network "private_network", ip: "192.168.30.30"
+
+  # VM configuration
+  config.vm.provider "virtualbox" do |vm|
+    vm.memory = "2048"
+    vm.cpus = "1"
+    vm.name = "Chef Server - Stand Alone"
+  end
+
+  # Provision Elasticsearch with ansible
+
+end
