@@ -2,22 +2,47 @@
 
 Vagrant.configure("2") do |config|
 
-  # Define vagrant box (VM Image)
-  config.vm.box = "ubuntu/trusty64"
+  ###
+  # Define the Chef Server Virtual Machine
+  ###
+  config.vm.define "server" do |server|
+    server.vm.box = "ubuntu/trusty64"
 
-  # Network configuration 
-  config.vm.hostname = "chef-server"
-  config.vm.network "private_network", ip: "192.168.30.30"
+    # Network Configuration 
+    server.vm.hostname = "chef-server"
+    server.vm.network "private_network", ip: "192.168.30.30"
 
-  # VM configuration
-  config.vm.provider "virtualbox" do |vm|
-    vm.memory = "2048"
-    vm.cpus = "1"
-    vm.name = "Chef Server - Stand Alone"
+    # VM configuration
+    server.vm.provider "virtualbox" do |vm|
+      vm.memory = "2048"
+      vm.cpus = "1"
+      vm.name = "Chef Server - Stand Alone"
+    end
+
+    # Provision puppet master using Shell Script files 
+    server.vm.provision "shell", :path => "shell/chefserver-install.sh"
+
   end
 
-	# Provision puppet master using Shell Script files 
-	config.vm.provision "shell", :path => "shell/chefserver-install.sh"
+  ###
+  # Define the chef client virtual machine
+  ###
+  config.vm.define "client" do |client|
+    client.vm.box = "ubuntu/trusty64" 
+
+    # Network Configuration
+    client.vm.hostname = "chef-client"
+    client.vm.network "private_network", ip: "192.168.30.40"
+
+    # VM Configuration 
+    client.vm.provider "virtualbox" do |vm|
+      vm.memory = "1024"
+      vm.cpus = "1"
+      vm.name = "Chef Client"
+    end
+
+    client.vm.provision "shell", :path => "shell/chefclient-install.sh"
+  end
 
   # That's all folks. 
 end

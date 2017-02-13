@@ -52,4 +52,8 @@ chef-server-ctl org-create \
     --filename ~/validator-org.pem
 echo "Created company InfraStack Inc"
 
+# Adding some configuration for DNS
+echo "192.168.30.30 chef-server.labs.in chef-server" >> /etc/hosts
+echo "192.168.30.40 chef-client.labs.in chef-client" >> /etc/hosts
+
 echo "Successfully provisioned Chef Server Standalove"
