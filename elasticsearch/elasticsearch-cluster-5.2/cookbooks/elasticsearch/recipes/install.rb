@@ -31,6 +31,11 @@ template 'java-config' do
   action                     :create
 end
 
+service 'network-restart' do
+  service_name 'network'
+  action [ :restart ]
+end
+
 service 'elasticsearch7' do
   service_name 'elasticsearch'
   action [ :enable, :start ]
