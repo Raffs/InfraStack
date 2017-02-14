@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "elasticsearch01" do |elasticsearch01|
     elasticsearch01.vm.box = "centos/7"
     elasticsearch01.vm.hostname = "midgard"
-    elasticsearch01.vm.network "private_network", ip: "192.168.40.2"
+    elasticsearch01.vm.network "private_network", ip: "192.168.30.70"
     elasticsearch01.vm.network "forwarded_port", guest: 9200, host: 9200
     elasticsearch01.vm.network "forwarded_port", guest: 9300, host: 9300
 
@@ -21,6 +21,48 @@ Vagrant.configure("2") do |config|
       chef.add_recipe "java8"
       chef.add_recipe "elasticsearch::install"
       chef.node_name = "midgard"
+   end
+  end
+
+  config.vm.define "elasticsearch02" do |elasticsearch02|
+    elasticsearch02.vm.box = "centos/7"
+    elasticsearch02.vm.hostname = "asgard"
+    elasticsearch02.vm.network "private_network", ip: "192.168.30.71"
+    elasticsearch02.vm.network "forwarded_port", guest: 9200, host: 9201
+    elasticsearch02.vm.network "forwarded_port", guest: 9300, host: 9301
+
+    elasticsearch02.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+      vb.cpus = "1"
+      vb.name = "elasticsearch02"
+    end
+
+    config.vm.provision "chef_solo" do |chef|
+      chef.cookbooks_path = "cookbooks"
+      chef.add_recipe "java8"
+      chef.add_recipe "elasticsearch::install"
+      chef.node_name = "asgard"
+   end
+  end
+
+  config.vm.define "elasticsearch03" do |elasticsearch03|
+    elasticsearch03.vm.box = "centos/7"
+    elasticsearch03.vm.hostname = "niflheim"
+    elasticsearch03.vm.network "private_network", ip: "192.168.30.72"
+    elasticsearch03.vm.network "forwarded_port", guest: 9200, host: 9202
+    elasticsearch03.vm.network "forwarded_port", guest: 9300, host: 9302
+
+    elasticsearch03.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+      vb.cpus = "1"
+      vb.name = "elasticsearch03"
+    end
+
+    config.vm.provision "chef_solo" do |chef|
+      chef.cookbooks_path = "cookbooks"
+      chef.add_recipe "java8"
+      chef.add_recipe "elasticsearch::install"
+      chef.node_name = "niflheim"
    end
   end
 end

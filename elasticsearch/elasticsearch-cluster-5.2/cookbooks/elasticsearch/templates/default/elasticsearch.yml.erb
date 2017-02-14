@@ -14,10 +14,12 @@
 #
 # Use a descriptive name for your cluster:
 #
-cluster.name: yggdrasil
+cluster.name: yggdrasill
 #
 # ------------------------------------ Node ------------------------------------
-node.name: <%= @hostname %>
+node.name: midgard
+node.master: true
+node.data: true
 #
 # ----------------------------------- Paths ------------------------------------
 #
@@ -33,7 +35,7 @@ node.name: <%= @hostname %>
 #
 # Lock the memory on startup:
 #
-#bootstrap.memory_lock: true
+# bootstrap.memory_lock: true
 #
 # Make sure that the heap size is set to about half the memory available
 # on the system and that the owner of the process is allowed to use this
@@ -45,11 +47,13 @@ node.name: <%= @hostname %>
 #
 # Set the bind address to a specific IP (IPv4 or IPv6):
 #
-#network.host: 192.168.0.1
+network.host: _eth1_
+network.publish_host: _eth1_
+network.bind_host: _eth1_
 #
 # Set a custom port for HTTP:
 #
-#http.port: 9200
+http.port: 9200
 #
 # For more information, consult the network module documentation.
 #
@@ -58,11 +62,11 @@ node.name: <%= @hostname %>
 # Pass an initial list of hosts to perform discovery when new node is started:
 # The default list of hosts is ["127.0.0.1", "[::1]"]
 #
-#discovery.zen.ping.unicast.hosts: ["host1", "host2"]
+discovery.zen.ping.unicast.hosts: ["192.168.30.70", "192.168.30.71", "192.168.30.72"]
 #
 # Prevent the "split brain" by configuring the majority of nodes (total number of master-eligible nodes / 2 + 1):
 #
-#discovery.zen.minimum_master_nodes: 3
+#discovery.zen.minimum_master_nodes: 2
 #
 # For more information, consult the zen discovery module documentation.
 #
@@ -78,4 +82,4 @@ node.name: <%= @hostname %>
 #
 # Require explicit names when deleting indices:
 #
-#action.destructive_requires_name: true
+action.destructive_requires_name: true

@@ -22,6 +22,15 @@ template 'elasticsearh-config' do
   action                     :create
 end
 
+template 'java-config' do
+  group                      'elasticsearch'
+  mode                       '0660'
+  owner                      'root'
+  path                       '/etc/elasticsearch/jvm.options'
+  source                     'jvm.options.erb'
+  action                     :create
+end
+
 service 'elasticsearch7' do
   service_name 'elasticsearch'
   action [ :enable, :start ]
