@@ -5,7 +5,7 @@
 # Copyright 2017
 #
 
-service 'elasticsearch7' do
+service 'elasticsearch5.2' do
   service_name 'elasticsearch'
-  action [ :enable, :start ]
+  action [ :enable, :restart ]
 end
