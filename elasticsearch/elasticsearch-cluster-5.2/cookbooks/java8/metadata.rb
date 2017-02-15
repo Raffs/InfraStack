@@ -1,7 +1,19 @@
-name             'java8'
-maintainer       'u1m0'
-maintainer_email 'caio.quinilato@gmail.com'
-license          'GNU'
-description      'Installs java8'
-long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.0'
+name 'java8'
+maintainer 'The Authors'
+maintainer_email 'you@example.com'
+license 'all_rights'
+description 'Installs/Configures java8'
+long_description 'Installs/Configures java8'
+version '0.1.0'
+
+# The `issues_url` points to the location where issues for this cookbook are
+# tracked.  A `View Issues` link will be displayed on this cookbook's page when
+# uploaded to a Supermarket.
+#
+# issues_url 'https://github.com/<insert_org_here>/java8/issues' if respond_to?(:issues_url)
+
+# The `source_url` points to the development reposiory for this cookbook.  A
+# `View Source` link will be displayed on this cookbook's page when uploaded to
+# a Supermarket.
+#
+# source_url 'https://github.com/<insert_org_here>/java8' if respond_to?(:source_url)
