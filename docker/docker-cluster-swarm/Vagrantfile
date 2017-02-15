@@ -6,22 +6,21 @@ Vagrant.configure("2") do |config|
     # Create Three virtualbox machines
     (1..3).each do |i|
 
-
-        config.vm.define "node#{i}" do |node|
+        config.vm.define "dnode#{i}" do |dnode|
 
             # Network Configuration
-            node.vm.hostname = "dnode-#{i}"
-            node.vm.network "private_network", ip: "192.168.30.8#{i}"
+            dnode.vm.hostname = "dnode-#{i}"
+            dnode.vm.network "private_network", ip: "192.168.30.8#{i}"
 
             # VM Configuration
-            node.vm.provider "virtualbox" do |vbox|
+            dnode.vm.provider "virtualbox" do |vbox|
                 vbox.memory = "1024"
                 vbox.cpus = "1"
                 vbox.name = "Docker node #{i}"
             end
 
             # define the provision
-            node.vm.provision "chef_solo" do |chef|
+            dnode.vm.provision "chef_solo" do |chef|
                 chef.cookbooks_path = "cookbooks"
                 chef.add_recipe "docker::install"
             end
