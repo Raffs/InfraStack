@@ -1,6 +1,6 @@
 #
-# Cookbook:: ELK5.2
-# Recipe:: default
+# Cookbook Name:: elasticsearch
+# Recipe:: restart
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
 
