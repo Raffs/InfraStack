@@ -38,7 +38,7 @@ Vagrant.configure("2") do |config|
     logstash.vm.network "forwarded_port", guest: 9000, host: 9000
 
     logstash.vm.provider "virtualbox" do |vb|
-      vb.memory = "1024"
+      vb.memory = "512"
       vb.cpus = "1"
       vb.name = "logstash"
     end
