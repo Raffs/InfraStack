@@ -2,7 +2,7 @@
 
 Vagrant.configure("2") do |config|
 
-  # Elasticsearch 5.2 + Kibana
+  # Elasticsearch 5.2s
   config.vm.define "elasticsearch01" do |elasticsearch01|
     elasticsearch01.vm.box = "centos/7"
     elasticsearch01.vm.hostname = "midgard"
@@ -24,9 +24,6 @@ Vagrant.configure("2") do |config|
       chef.add_recipe "elasticsearch::configure"
       chef.add_recipe "elasticsearch::network-restart"
       chef.add_recipe "elasticsearch::restart"
-      chef.add_recipe "kibana::install"
-      chef.add_recipe "kibana::configure"
-      chef.add_recipe "kibana::restart"
       chef.node_name = "midgard"
    end
   end
