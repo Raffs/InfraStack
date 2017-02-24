@@ -1,0 +1,54 @@
+# Name: Elasticsearch Logstash and Kibana
+
+Vagrant.configure("2") do |config|
+
+  # Elasticsearch 5.2 + Kibana
+  config.vm.define "elasticsearch" do |elasticsearch|
+    elasticsearch.vm.box = "centos/7"
+    elasticsearch.vm.hostname = "zeus"
+    elasticsearch.vm.network "private_network", ip: "192.168.30.80"
+    elasticsearch.vm.network "forwarded_port", guest: 9200, host: 9200
+    elasticsearch.vm.network "forwarded_port", guest: 9300, host: 9300
+    elasticsearch.vm.network "forwarded_port", guest: 5601, host: 5601
+
+    elasticsearch.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+      vb.cpus = "1"
+      vb.name = "elasticsearch"
+    end
+
+    config.vm.provision "chef_solo" do |chef|
+      chef.cookbooks_path = "cookbooks"
+      chef.add_recipe "java8::install"
+      chef.add_recipe "elasticsearch::install"
+      chef.add_recipe "elasticsearch::configure"
+      chef.add_recipe "elasticsearch::network-restart"
+      chef.add_recipe "elasticsearch::restart"
+      chef.add_recipe "kibana::install"
+      chef.add_recipe "kibana::configure"
+      chef.add_recipe "kibana::restart"
+      chef.node_name = "zeus"
+   end
+  end
+
+  config.vm.define "logstash" do |logstash|
+    logstash.vm.box = "centos/7"
+    logstash.vm.hostname = "hades"
+    logstash.vm.network "private_network", ip: "192.168.30.81"
+    logstash.vm.network "forwarded_port", guest: 9000, host: 9000
+
+    logstash.vm.provider "virtualbox" do |vb|
+      vb.memory = "512"
+      vb.cpus = "1"
+      vb.name = "logstash"
+    end
+
+    config.vm.provision "chef_solo" do |chef|
+      chef.cookbooks_path = "cookbooks"
+      chef.add_recipe "logstash::install"
+      #chef.add_recipe "logstash::configure"
+      chef.add_recipe "logstash::restart"
+      chef.node_name = "hades"
+   end
+  end
+end
